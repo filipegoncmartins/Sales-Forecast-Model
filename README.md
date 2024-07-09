@@ -23,6 +23,8 @@ The price dataset contains detailed pricing information for items sold across va
 * Sales Data (dfsales)
 The sales dataset is the most extensive and contains transaction-level details for each item sold. It includes fields such as the item ID, item category, department, store name, store code, region, the day of the sale, and the sales quantity. This dataset is essential for training the model as it provides the historical sales data needed to identify patterns and trends.
 
+Dataset available in: https://drive.google.com/drive/folders/1UGPuiJIK57NfMSAytC6bN_caWzdEDMHs?usp=sharing
+
 ## Steps followed 
 
 ### [1]  Data Preprocessing
