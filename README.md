@@ -1,57 +1,66 @@
 
 # Sales Forecast Model
 
-This repository contains a sales forecast model developed for a retail store using Python. The model predicts the quantity of sales for the next four weeks, utilizing historical sales data and various other factors.
+This project focuses on developing a machine learning model to predict monthly sales by segment for retailers in shopping malls. The model was built using a Decision Tree Regressor, optimized for the best negative mean absolute error (neg_mean_absolute_error). Key steps in the project include data collection, cleaning, exploratory data analysis, outlier detection, and stationarity testing using KPSS, ADF, OCSB, and CH tests. The model was fine-tuned using hyperparameter optimization and evaluated with metrics such as MSE, MAE, and R². The final model predicts an 3% increase in total sales over the next 12 months compared to the previous year, providing valuable insights for strategic decision-making.
 
 ![aaaaa](https://github.com/filipegoncmartins/Customer-Segmentation-Analysis-using-Machine-Learning/assets/148718210/e95d2a59-0849-47a0-82bc-5a2b2724e5ab)
 
 
 ## Problem to be Solved
 
-The objective of this project is to forecast the weekly sales quantities for the Back Bay store, using sales data from this store as well as from other stores in the network. By doing so, the model helps in planning and decision-making processes, ensuring that the store can meet customer demand efficiently.
+The problem addressed in this project is the need for accurate and reliable forecasts of monthly sales for different store segments within shopping malls. Retailers and mall management require these predictions to make informed decisions about inventory management, marketing strategies, and resource allocation. The challenge lies in developing a model that can account for the diverse factors affecting sales, including seasonal trends and segment-specific behaviors, while providing precise forecasts that can guide strategic planning and optimize business operations.
 
 ## Dataset Information
 
-This project utilizes three primary datasets to build the sales forecast model:
-
-* Calendar Data (dfcalendar)
-The calendar dataset provides information on dates, including the day of the week and any special events. This data is crucial for capturing seasonal patterns and event-driven sales spikes. It includes fields for the date, the corresponding weekday in both string and integer formats, and event names when applicable.
-
-* Price Data (dfprice)
-The price dataset contains detailed pricing information for items sold across various stores. It includes the item identifier, its category, the store code, the specific week of the year, and the selling price. This dataset helps in understanding how price changes affect sales volumes, allowing the model to account for price sensitivity.
-
-* Sales Data (dfsales)
-The sales dataset is the most extensive and contains transaction-level details for each item sold. It includes fields such as the item ID, item category, department, store name, store code, region, the day of the sale, and the sales quantity. This dataset is essential for training the model as it provides the historical sales data needed to identify patterns and trends.
-
-Dataset available in: https://drive.google.com/drive/folders/1UGPuiJIK57NfMSAytC6bN_caWzdEDMHs?usp=sharing
+The dataset used in this project was extracted from an internal data warehouse and exported to Excel for analysis. It contains comprehensive information relevant to the sales performance of different store segments within shopping malls. The dataset includes the following columns: Mall, Cod_client, Sales, Categoria (Category), Segmento (Segment), Tipo de Locação (Lease Type), Classificação (Classification), Data (Date), Ano (Year), and Mês (Month). This data provides a detailed view of sales across various segments between 2018 and 2024, serving as the foundation for building and evaluating the predictive model.
 
 ## Steps followed 
 
-### [1]  Data Preprocessing
-Standard procedures for data analysis were followed, including: 
+### [1]  Data Collection and Cleaning
 
-* Cleaning the data to handle missing values and inconsistencies.
-* Transforming the data to ensure compatibility with modeling techniques.
-* Feature engineering to create relevant features for the model.
+* Gather relevant data, such as sales records and store attributes. Integrate these datasets into a unified dataset.
+* Clean the data by removing duplicates and correcting inconsistencies.
+* Identify and handle missing values through imputation or removal as needed.
 
-### [2]  Model Selection
-
-Various models were evaluated using cross-validation to ensure robust performance. Ridge Regression was identified as the best-performing model.
-
-### [3]  Forecasting
-
-Sales data were aggregated weekly. The forecast for the Back Bay store was made using sales data from both the Back Bay store and other stores in the network.
-
-### [4]  Optimization
-
-A model optimization algorithm was employed to fine-tune the Ridge Regression model for better accuracy.
+### [2]  Exploratory Data Analysis (EDA)
+* Inspect the dataset to identify patterns, trends, and potential anomalies.
+* Use visualizations like histograms and time series plots to understand data distributions and behavior.
+* Analyze sales by different store segments.
+### [3]  Outlier Detection
+* Decide on appropriate treatment for outliers, whether by removal, transformation, or imputation.
+### [4]  Stationarity Tests
+* Perform tests such as KPSS, ADF, OCSB, and CH to check for stationarity, a key requirement for many time series models.
+### [5]  Label Encoding
+* Convert categorical variables into numerical labels to make them suitable for machine learning models.
+### [6]  Correlation Analysis
+* Calculate correlations between variables to understand their relationships and identify potential multicollinearity issues.
+### [7]  Model Selection with Cross-Validation
+* Evaluate different models (Ridge, Lasso, RandomForestRegressor, DecisionTreeRegressor, KNeighborsRegressor) using cross-validation, optimizing performance based on negative mean absolute error (neg_mean_absolute_error).
+### [8]  Hyperparameter Tuning with GridSearchCV
+* Use GridSearchCV to search for the best parameters for the selected model, improving its performance.
+### [9]  Model Evaluation
+* Assess model accuracy and performance using metrics like MSE, MAE, and R².
+### [10]  Precision for 12-Month Forecast
+* Verify the model's precision over a 12-month prediction horizon and adjust as necessary to ensure reliable forecasts.
 
 ## Insights
 
-* Seasonal Trends: Analysis revealed significant seasonal trends that impact sales, which were incorporated into the model.
-* Price Sensitivity: Sales showed sensitivity to changes in prices, underlining the importance of including price data in the model.
-* Event Impact: Events listed in the dfcalendar dataset had notable effects on sales, demonstrating the need to account for external factors.
+* Segmented Sales Trends: The model revealed distinct sales patterns across different store segments, allowing for more targeted analysis and decision-making. Retail segments responded differently to seasonal variations, highlighting the importance of segment-specific strategies.
+
+* Stationarity Confirmation: The time series data was confirmed to be stationary through multiple tests (KPSS, ADF, OCSB, and CH), ensuring the reliability of the forecasting model without the need for further transformations.
+
+* Model Accuracy: The Decision Tree Regressor model, optimized for the best negative mean absolute error, demonstrated high accuracy with an R² score of 0.971. This indicates a strong fit to the historical data and a reliable prediction capability.
+
+* 12-Month Sales Forecast: The model predicts an 3% increase in total sales over the next 12 months compared to the previous period. This forecast provides actionable insights for inventory management, marketing strategies, and resource allocation.
+
+* Impact of Excluding Pandemic Data: By removing the months corresponding to the peak of the pandemic from the dataset, the model was better able to capture typical sales patterns, leading to more accurate and relevant forecasts for future periods.
+
+These insights support strategic decision-making by providing a deeper understanding of sales dynamics across different store segments and time periods within the shopping malls.
 
 ## Conclusion
 
-The final Ridge Regression model successfully projected sales quantities for the next four weeks for the Back Bay store. The model's predictions can aid in inventory management and strategic planning.
+In conclusion, this project successfully developed a robust machine learning model for forecasting monthly sales by segment within shopping malls. By leveraging a Decision Tree Regressor and optimizing its performance through meticulous data preparation and model tuning, we achieved a highly accurate forecast with an impressive R² score of 0.971. 
+
+The model’s prediction of an 3% increase in sales over the next 12 months offers valuable foresight for strategic planning, enabling retailers and mall management to make informed decisions regarding inventory, marketing, and resource allocation. 
+
+The thoughtful exclusion of pandemic-related anomalies further refined the model, ensuring that the forecasts reflect more typical business conditions. Overall, this project not only enhances our understanding of sales trends across different segments but also equips stakeholders with actionable insights to drive future success.
